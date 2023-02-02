@@ -12,7 +12,7 @@ This project was to use Express.js to create the back-end of a note taker applic
 
 ## Depolyed Viewing
 
-Heroku link: 
+Heroku link: https://gator-note-taker-express.herokuapp.com/
 
 GitHub link: https://kawaikimono.github.io/Lesson-11-Express.js-Note-Taker/
 
