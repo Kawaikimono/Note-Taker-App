@@ -5,8 +5,7 @@ const db = require ("./db/db.json");
 const fs = require ("fs");
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-const generateUniqueId = require('generate-unique-id');
-const id = generateUniqueId()
+const { v4: uuidv4 } = require('uuid');
 const Port = process.env.PORT || 3000;
 
 
@@ -24,9 +23,17 @@ app.get("/api/notes",(req,res) => {
 })
 
 app.post("/api/notes",(req,res)=>{
+    req.body.id= uuidv4()
     db.push(req.body)
-    res.send(req.body)
-})
+    fs.writeFile("db/db.json", JSON.stringify(db, null, 4), (err) => {
+        if (err) {
+          res.status(500).send("Can't post this");
+          throw err;
+        } else {
+          res.send("Updated!");
+        }
+      });
+    })
 
 
 app.get("*", (req,res)=>{
@@ -35,47 +42,3 @@ app.get("*", (req,res)=>{
 app.listen(Port,function(){
     console.log("Connected")
 })
-
-
-
-// The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Heroku.
-
-
-
-// ## Acceptance Criteria
-
-// ```
-//\
-// THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes
-// WHEN I click on an existing note in the list in the left-hand column
-// THEN that note appears in the right-hand column
-// WHEN I click on the Write icon in the navigation at the top of the page
-// THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
-// ```
-
-
-
-
-// ## Grading Requirements
-// ### Technical Acceptance Criteria: 40%
-
-
-
-
-// ### Repository Quality: 13%
-
-
-// * Repository contains quality README file with description, screenshot, and link to deployed application.
-
-
-// ### Bonus: +10 Points
-
-// * Application allows users to delete notes.
-
-
-// ## Review
-
-// You are required to submit BOTH of the following for review:
-
-// * The URL of the functional, deployed application.
-// The URL of the GitHub repository, with a unique name and a README describing the project.
