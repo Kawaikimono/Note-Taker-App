@@ -1,4 +1,4 @@
-# Lesson-11-Express.js-Note-Taker
+# Note-Taker-App
 
 ## Description
 ```
@@ -14,7 +14,7 @@ This project was to use Express.js to create the back-end of a note taker applic
 
 Heroku link: https://gator-note-taker-express.herokuapp.com/
 
-GitHub link: https://kawaikimono.github.io/Lesson-11-Express.js-Note-Taker/
+GitHub link: https://kawaikimono.github.io/Note-Taker-App/
 
 ![Website preview](./Preview.png)
 
